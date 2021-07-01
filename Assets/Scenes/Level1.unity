@@ -12220,7 +12220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650979126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.4, y: 2.3, z: 0}
+  m_LocalPosition: {x: 30.5, y: -2.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 788750436}
@@ -17418,7 +17418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8fb2ac00b6c1264684a27e73dd5df35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadDelay: 0.5
+  loadDelay: 1
   crashEffect: {fileID: 1130607463}
   crashSFX: {fileID: 8300000, guid: 6a53531be5bb01741b71167414c12a17, type: 3}
 --- !u!114 &1824253745
