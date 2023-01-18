@@ -1,61 +1,39 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
-    [SerializeField] float torqueAmount = 1f;
-    [SerializeField] float boostSpeed = 30f;
-    [SerializeField] float baseSpeed = 20f;
+public class PlayerController : MonoBehaviour{
+    [SerializeField] private float torqueAmount = 1f;
+    [SerializeField] private float boostSpeed = 30f;
+    [SerializeField] private float baseSpeed = 20f;
 
-    Rigidbody2D rb2d;
-    SurfaceEffector2D surfaceEffector2D;
-    bool canMove = true;
+    private Rigidbody2D _rigidbody2D;
+    private SurfaceEffector2D _surfaceEffector2D;
+    private bool _canMove = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-        surfaceEffector2D = FindObjectOfType<SurfaceEffector2D>();
+    private void Start(){
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _surfaceEffector2D = FindObjectOfType<SurfaceEffector2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (canMove)
-        {
-            RotatePlayer();
-            RespondToBoost();
-        }
+    private void Update(){
+        if (!_canMove) return;
+        RotatePlayer();
+        RespondToBoost();
     }
 
-    public void DisableControls()
-    {
-        canMove = false;
+    public void DisableControls(){
+        _canMove = false;
     }
 
-    void RespondToBoost()
-    {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            surfaceEffector2D.speed = boostSpeed;
-        }
-        else
-        {
-            surfaceEffector2D.speed = baseSpeed;
-        }
+    private void RespondToBoost(){
+        _surfaceEffector2D.speed = Input.GetKey(KeyCode.UpArrow) ? boostSpeed : baseSpeed;
     }
 
-    void RotatePlayer()
-    {
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            rb2d.AddTorque(torqueAmount);
+    private void RotatePlayer(){
+        if (Input.GetKey(KeyCode.LeftArrow)){
+            _rigidbody2D.AddTorque(torqueAmount);
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            rb2d.AddTorque(-torqueAmount);
+        else if (Input.GetKey(KeyCode.RightArrow)){
+            _rigidbody2D.AddTorque(-torqueAmount);
         }
     }
 }
